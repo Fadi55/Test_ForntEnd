@@ -1,0 +1,147 @@
+
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i>
+        </button>
+      </div>
+    <input type="text" [(ngModel)]="searchText"  (keyup)="onChange($event)"   class="form-control form-control-sm">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target="#exampleModal" (click)="showModal()"><i class="fas fa-plus"></i></button>
+    </div>
+  </div>
+  <!-- <i class="  fa-plus"></i> -->
+<!-- <i class="fa-solid fa-plus"></i>
+<div class="search-hero">
+    <input class="form-control" type="text" name="search"  autocomplete="off" >
+  </div>  -->
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="showModal()">
+    Launch demo modal
+  </button> -->
+  
+  <!-- Modal -->
+  <div class="modal" [class.show]="show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+   aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                <!-- <button type="button"  class="close" data-dismiss="modal">&times;</button> -->
+                  <h5 class="modal-title" id="exampleModalLabel">Create New Profile</h5>
+                  <button type="button" style="border-color: transparent;" #closebutton class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+              </div>
+              <div class="modal-body">
+                <section class="login-block">
+                 
+                        <div class="row">
+                         
+                                
+                                <form   [formGroup]="inquiryForm" (ngSubmit)="onSubmit()">
+                                    <div class="form-group">
+                                        <label class="text-uppercase">Full Name *</label>
+                                        <input type="text" [(ngModel)]="text1" class="form-control" formControlName="full_name">
+                                    </div>
+                                    
+                                        <div class="col-xs-2">
+                                        <label class="text-uppercase">SSN*</label>
+                                        <input type="number"  [(ngModel)]="text2" class="form-control" formControlName="ssn">
+                                 
+                                    </div>
+                
+                                 
+                                    
+                                    <div class="form-group">
+                                        <label class="text-uppercase">Phone Number*</label>
+                                        <input   class="form-control"  [(ngModel)]="text3" formControlName="Phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-12">
+                                        <label class="text-uppercase">Date of birth Day*</label>
+                                        <input  placeholder="MM/DD/YYYY" ngbDatepicker #d="ngbDatepicker" (dateSelect)="onDateSelect($event)"  [(ngModel)]="text4" class="form-control" (click)="d.toggle()" formControlName="dob">
+                                       
+                                    </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="text-uppercase">Hired*</label>
+                                        <input  placeholder="MM/DD/YYYY" ngbDatepicker #h="ngbDatepicker"  (dateSelect)="onDateSelect1($event)" [(ngModel)]="text5" class="form-control" (click)="h.toggle()"  class="form-control" formControlName="hired">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="text-uppercase">CDL Number *</label>
+                                        <input type="number" class="form-control"  [(ngModel)]="text6" formControlName="CDL">
+                                    </div>
+                
+                                    <div class="form-group">
+                                        <label class="text-uppercase">State</label>
+                                        <select class="form-control"      [(ngModel)]="selectedname"  (change)="onChangeState($event)" formControlName="state">
+                                            <option *ngFor="let item of items" [ngValue]="item">{{item.value}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="text-uppercase">Upload Picture *</label>
+                                        <input input #Image type="file"  formControlName="img">
+                                    </div>
+                                    
+                                    <div class="input-group">
+  
+                              
+                                        <input type="number"  name="textCDL" (keyup)="onChangeCDL($event)" class="form-control 
+                                                input-sm" placeholder="CDL exp." />
+                                              
+                               
+                                        <span class="input-group-btn" 
+                                            style="width:0px;"></span>
+                                       
+                                   
+                                        <input type="number" name="textMedical"    (keyup)="onChangeMed($event)"  class="form-control 
+                                                input-sm"  placeholder="Medical exp."/>
+                                                
+                                                
+                                        <span class="input-group-btn" 
+                                        style="width:0px;"></span>
+                            
+                                    <input type="number"  (keyup)="onChangeMVR($event)" name="textMVR"    class="form-control 
+                                            input-sm"  placeholder="MVR exp." />
+                                    </div>
+                                    <div class="input-group">
+  
+                                  
+                                      <span style="     margin-left: 8%;
+                                      padding: 0%;
+                                      width: 10%;font-style: italic;">  {{mvrDays}} days</span>  
+                                              
+                                      
+                                        <span class="input-group-btn" 
+                                            style="margin-left: 2%;
+                                            padding: 0%;
+                                            width: 13%;font-style: italic;"></span>
+                                       
+                                     
+                                      <span  style="font-style: italic;" >{{medDays}} days</span> 
+                                               
+                                              
+                                        <span class="input-group-btn" 
+                                        style="margin-left: 2%;
+                                        padding: 0%;
+                                        width: 13%;font-style: italic;"></span>
+                          
+                                      <span style="font-style: italic;" >{{cdlDays}} days</span>   
+                                    </div>
+                                   
+                                    <div class="modal-footer">
+                                    
+                                    <button type="button" class="btn btn-primary"   [disabled]="!inquiryForm.valid" type="submit"    id="closeModal"   (click)="onSave()">Save changes</button>
+                             </div>
+                                </form>
+                            </div>
+                           
+                  
+                </section>
+              </div>
+              <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModal()">Close</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="showModal()"  type="submit" >Save changes</button>
+              </div> -->
+          </div>
+      </div>
+  </div>

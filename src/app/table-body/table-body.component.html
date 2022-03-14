@@ -1,0 +1,69 @@
+<tr *ngFor="let hero of heroes  |slice: (page-1) * 1 : (page-1) * 10 + 10 ; let i = index">
+
+    <td>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" [(ngModel)]="hero.checked" (ngModelChange)="changed()">
+
+        </div>
+    </td>
+
+    <td>
+
+        <img width="25" class="rounded-circle" src="./assets/images/13.jpg" alt="">{{hero.full_name}}
+
+    </td>
+
+    <td>{{hero.Phone}}</td>
+    <td>{{hero.ssn}}</td>
+    <td>{{hero.dob}}</td>
+    <td>{{hero.hired}}</td>
+    <td>{{hero.CDL}}</td>
+    <td> <img width="25" class="rounded-circle" src="./assets/images/{{hero.state}}.jpg" alt=""></td>
+    <td>
+        <div class="row" style="font-style: italic;">
+            <div class="progress" style="width: 25%;">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 115%" aria-valuenow="25"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+            </div> in {{hero.CDLexp}} days
+        </div>
+    </td>
+    <td>
+        <div class="row" style="font-style: italic;">
+            <div class="progress" style="width: 22%;">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+            </div> in {{hero.MEDexp}} days
+        </div>
+    </td>
+    <td>
+        <div class="row" style="font-style: italic;">
+            <div class="progress" style="width: 30%;">
+                <div class="progress-bar bg-danger" role="progressbar" style="width: 50%" aria-valuenow="25"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+            </div>in {{hero.MVRexp}} days
+        </div>
+    </td>
+
+    <td>
+        <div class="dropdown">
+
+            <button input #Image type="file" formControlName="img" style=" border-color: transparent;"> <i
+                    class="fas fa-paperclip"> </i> </button>
+            <button style=" border-color: transparent;"> <i class="fas fa-copy"></i> </button>
+            <button style=" border-color: transparent;" data-bs-toggle="dropdown">... </button>
+            <div class="dropdown-menu">
+                <span class="dropdown-item"> <i class="fas fa-pen"></i>&ensp;&ensp;Edit</span>
+                <span class="dropdown-item"> <i class="fas fa-plus"></i>&ensp;&ensp;Add CDL</span>
+                <span class="dropdown-item"> <i class="fas fa-plus"></i>&ensp;&ensp;Add Medical</span>
+                <span class="dropdown-item"> <i class="fas fa-plus"></i>&ensp;&ensp;Add MVR</span>
+                <span class="dropdown-item"> <i class="fas fa-plus"></i>&ensp;&ensp;Add Test</span>
+                <span class="dropdown-item"><i class="fas fa-power-off"></i>&ensp;&ensp;Deasctivate</span>
+                <button style="background-color: transparent;border-color: transparent;" (click)="deleteRow(i)"> <span
+                        class="dropdown-item" style="color: red;"> <i class="fas fa-trash"></i>&ensp;&ensp;Delete
+                    </span></button>
+            </div>
+
+        </div>
+    </td>
+
+</tr>
